@@ -1,0 +1,128 @@
+.desc {
+  @include bg;
+  background-image: url('/src/img/bgs/desc-bg.jpg');
+  min-height: 887px;
+  padding-top: 80px;
+
+  @media (max-width: 1150px) {
+    background-position-x: -388px;
+  }
+
+  @media (max-width: 650px) {
+    padding-top: 20px;
+    min-height: auto;
+    padding-bottom: 20px;
+    background-position-y: -62px;
+    background-size: 1740px;
+  }
+}
+
+.desc__title {
+  font-size: 42px;
+  margin-bottom: 20px;
+  color: white;
+  line-height: normal;
+  @include max-width(837px);
+
+  span {
+    background-color: #8eb758;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  @media (max-width: 991px) {
+    font-size: 36px;
+    margin-bottom: 40px;
+  }
+
+  @media (max-width: 650px) {
+    margin-bottom: 30px;
+  }
+}
+
+.desc__text {
+  @include max-width(530px);
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 26px;
+}
+
+.desc__slider-box {
+  margin-bottom: 55px;
+
+  @include tablet-mb;
+
+  @media (max-width: 650px) {
+    margin-bottom: 20px;
+  }
+}
+
+.desc__slider-pagination {
+  position: relative;
+  bottom: 0 !important;
+  margin-top: 5px;
+}
+
+.desc__slider-wrapper {
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 60px;
+
+  @media (max-width: 650px) {
+    gap: 0px;
+    flex-wrap: initial;
+    justify-content: initial;
+  }
+}
+
+.desc__slide {
+  max-width: 200px;
+  width: 100% !important;
+  padding-top: 50px;
+  position: relative;
+
+  &::before {
+    width: 40px;
+    height: 38px;
+    @include bg;
+    background-image: url('/src/img/icons/desc-check.png');
+    position: absolute;
+    left: 0;
+    top: 0;
+    content: '';
+  }
+
+  &:nth-child(2) {
+    max-width: 185px;
+  }
+
+  &:nth-child(3) {
+    max-width: 125px;
+  }
+
+  @media (max-width: 650px) {
+    max-width: 300px !important;
+  }
+
+  &::before {
+    content: '';
+  }
+}
+
+.desc__form {
+  border-radius: 10px 10px 0 0;
+
+  @media (max-width: 650px) {
+    display: none;
+  }
+}
+
+.desc__btn {
+  display: none;
+
+  @media (max-width: 650px) {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
