@@ -50,6 +50,30 @@
   gap: 25px;
   flex-wrap: wrap;
   margin-bottom: 50px;
+  position: relative;
+
+  &::after {
+    content: '';
+    width: 538px;
+    aspect-ratio: 538/590;
+    position: absolute;
+    left: -610px;
+    top: -160px;
+    @include bg;
+    background-image: url('/src/img/steps-img.jpg');
+    z-index: -1;
+
+    @media (max-width: 1150px) {
+      @include max-width(538px);
+      position: relative;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 20px;
+      left: 0;
+      top: 0;
+    }
+  }
 
   @media (max-width: 1150px) {
     justify-content: center;
@@ -96,4 +120,167 @@
 
   @include tablet-mb;
   @include mobile-mb;
+}
+
+.steps__content-wrapper {
+  max-width: 664px;
+  position: relative;
+  margin-bottom: 150px;
+
+  @media (max-width: 1150px) {
+    margin-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &::after {
+    width: 868px;
+    aspect-ratio: 868/608;
+    position: absolute;
+    right: 0;
+    transform: translateX(100%);
+    @include bg;
+    background-image: url('/src/img/steps-house.jpg');
+    content: '';
+    top: 0;
+
+    @media (max-width: 1150px) {
+      width: 100%;
+      position: relative;
+      display: block;
+      transform: none;
+    }
+  }
+}
+
+.steps__content {
+  background-color: white;
+  box-shadow: 0 0 120px 0 rgba(113, 137, 168, 0.19);
+  padding-top: 51px;
+  padding-left: 44px;
+  padding-bottom: 62px;
+  padding-right: 50px;
+
+  @media (max-width: 650px) {
+    padding-top: 20px;
+    padding-left: 0px;
+    padding-bottom: 20px;
+    padding-right: 15px;
+  }
+}
+
+.steps__content-title {
+  padding-left: 123px;
+  font-weight: bold;
+  font-size: 26px;
+  line-height: 1.38;
+  margin-bottom: 49px;
+
+  @media (max-width: 650px) {
+    padding-left: 30px;
+  }
+
+  @include tablet-mb;
+  @include mobile-mb;
+}
+
+.steps__content-list {
+  @include reset-list;
+
+  & > * + * {
+    margin-top: 50px;
+
+    @media (max-width: 650px) {
+      margin-top: 20px;
+    }
+  }
+}
+
+.steps__content-item {
+  padding-left: 123px;
+  position: relative;
+
+  @media (max-width: 650px) {
+    padding-left: 85px;
+  }
+
+  &::before {
+    width: 60px;
+    height: 60px;
+    @include bg;
+    content: '';
+    left: 10px;
+    @include y-align;
+    position: absolute;
+    border-radius: 16px;
+    box-shadow: 9px 15px 32px 0px rgba(#bec9d6, 0.35);
+
+    @media (max-width: 650px) {
+      top: 7px;
+      transform: none;
+    }
+  }
+
+  @for $i from 1 through 3 {
+    &:nth-child(#{$i})::before {
+      background-image: url('/src/img/icons/steps-content/#{$i}.jpg');
+    }
+  }
+}
+
+.steps__note-box {
+  position: relative;
+  background-color: #f2fafd;
+
+  @media (max-width: 1150px) {
+    max-width: 664px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &::after {
+    width: 630px;
+    aspect-ratio: 630/418;
+    position: absolute;
+    @include bg;
+    background-image: url('/src/img/steps-card-img.png');
+    bottom: 0;
+    left: 0;
+    content: '';
+
+    @media (max-width: 1150px) {
+    width: 100%;
+    display: block;
+    position: relative;
+    }
+  }
+}
+
+.steps__note-text-box {
+  padding-left: 627px;
+  padding-right: 54px;
+  padding-bottom: 63px;
+  padding-top: 63px;
+
+  @media (max-width: 1150px) {
+    padding: 20px;
+  }
+}
+
+.steps__note-title {
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 40px;
+
+  span {
+    color: #729d39;
+  }
+
+  @include tablet-mb;
+  @include mobile-mb;
+}
+
+.steps__note-text {
+  margin-bottom: 0;
+  font-size: 20px;
 }
