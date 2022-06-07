@@ -3,6 +3,8 @@
   padding-bottom: 93px;
   @include bg;
   background-image: url('/src/img/bgs/calc-bg.jpg');
+  position: relative;
+  z-index: 1;
 
   @media (max-width: 1150px) {
     padding-top: 50px;

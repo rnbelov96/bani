@@ -2,6 +2,7 @@ import './scss/style.scss';
 import './ts/year';
 import './ts/slider';
 import './ts/show-animations';
+import './ts/tabs';
 // import './ts/modals';
 // import './ts/dropdowns';
 import './ts/calc';
