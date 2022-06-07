@@ -1,0 +1,135 @@
+.direct {
+  padding-top: 90px;
+  padding-bottom: 110px;
+  @include bg;
+  background-image: url('/src/img/bgs/direct-bg.jpg');
+
+  @media (max-width: 1150px) {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
+  @media (max-width: 650px) {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+}
+
+.direct__title {
+  margin-bottom: 38px;
+
+  @include mobile-mb;
+}
+
+.direct__text {
+  max-width: 781px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 20px;
+
+  @include mobile-mb;
+}
+
+.direct__content {
+  position: relative;
+}
+
+.direct__list-text-box {
+  position: absolute;
+  @include x-align;
+  top: -50px;
+
+  @media (max-width: 1150px) {
+    position: relative;
+    top: 0;
+    margin-bottom: 20px;
+    margin-top: -50px;
+  }
+
+  @media (max-width: 650px) {
+    margin-top: -30px;
+  }
+}
+
+.direct__list-number {
+  font-size: 200px;
+  font-weight: bold;
+  text-align: center;
+  color: #729d39;
+  margin-bottom: -55px;
+
+  @media (max-width: 650px) {
+    font-size: 100px !important;
+    margin-bottom: -30px;
+  }
+}
+
+.direct__list-text {
+  font-size: 20px;
+  margin-bottom: 0;
+  font-weight: bold;
+  text-align: center;
+}
+
+.direct__top-list {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  @media (max-width: 1150px) {
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 30px;
+  }
+}
+
+.direct__bottom-list {
+  justify-content: center;
+  display: flex;
+  gap: 35px;
+  margin-bottom: 62px;
+  flex-wrap: wrap;
+
+  @include tablet-mb;
+  @include mobile-mb;
+}
+
+.direct__item-img {
+  display: block;
+  margin-bottom: 20px;
+
+  @media (max-width: 650px) {
+    zoom: 0.6;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.direct__item-text {
+  margin-bottom: 0;
+
+  @media (max-width: 650px) {
+    text-align: center;
+    br {
+      display: none;
+    }
+  }
+}
+
+.direct__item {
+  &_3,
+  &_5 {
+    position: relative;
+    top: -95px;
+
+    @media (max-width: 1150px) {
+      top: 0;
+    }
+  }
+
+  @media (max-width: 650px) {
+    @include max-width(300px);
+  }
+}
