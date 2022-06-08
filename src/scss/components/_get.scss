@@ -1,0 +1,88 @@
+.get {
+  padding-top: 80px;
+  padding-bottom: 80px;
+  @include bg;
+  background-image: url('/src/img/bgs/get-bg.jpg');
+
+  @media (max-width: 1150px) {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
+  @media (max-width: 650px) {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+}
+
+.get__title {
+  margin-bottom: 44px;
+  text-align: left;
+  @include max-width(945px);
+
+  @include tablet-mb;
+  @include mobile-mb;
+}
+
+.get__text-box {
+  @include max-width(505px);
+  margin-bottom: 40px;
+
+  @media (max-width: 1100px) {
+    max-width: 100%;
+  }
+
+  @include mobile-mb;
+
+  & > * + * {
+    margin-top: 30px;
+
+    @media (max-width: 650px) {
+      margin-top: 20px;
+    }
+  }
+}
+
+.get__text {
+  font-size: 20px;
+  margin-bottom: 0;
+}
+
+.get__form-wrapper {
+  position: relative;
+
+  &::before {
+    width: 886px;
+    aspect-ratio: 886/650;
+    @include bg;
+    background-image: url('/src/img/get-magazine.png');
+    position: absolute;
+    content: '';
+    top: -400px;
+    right: -250px;
+    z-index: -1;
+
+    @media (max-width: 1100px) {
+      position: relative;
+      display: block;
+      top: 0;
+      right: 0;
+      margin-left: auto;
+      margin-right: auto;
+      @include max-width(886px);
+      margin-bottom: -120px;
+
+      @media (max-width: 650px) {
+        margin-bottom: -50px;
+      }
+    }
+  }
+}
+
+.get__form {
+  h3 {
+    @media (max-width: 650px) {
+      font-size: 19px !important;
+    }
+  }
+}
