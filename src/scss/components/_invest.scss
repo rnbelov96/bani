@@ -1,0 +1,159 @@
+.invest {
+  padding-top: 88px;
+  padding-bottom: 97px;
+  @include bg;
+  background-image: url('/src/img/bgs/invest-bg.jpg');
+
+  @media (max-width: 1150px) {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
+  @media (max-width: 650px) {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+}
+
+.invest__title {
+  margin-bottom: 37px;
+
+  @include mobile-mb;
+}
+
+.invest__text {
+  margin-bottom: 60px;
+  text-align: center;
+  font-size: 20px;
+
+  @include tablet-mb;
+  @include mobile-mb;
+}
+
+.invest__content {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  margin-bottom: 80px;
+
+  @media (max-width: 1150px) {
+    margin-bottom: 50px;
+  }
+
+  @media (max-width: 850px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  @include tablet-mb;
+  @include mobile-mb;
+}
+
+.invest__text-box {
+  max-width: 300px;
+}
+
+.invest__row {
+  margin-bottom: 15px;
+  line-height: normal;
+
+  b {
+    font-size: 26px;
+
+    @media (max-width: 650px) {
+      font-size: 20px !important;
+    }
+  }
+}
+
+.invest__result {
+  font-size: 36px;
+  font-weight: bold;
+  color: #729d39;
+  margin-bottom: 0;
+  line-height: normal;
+
+  @media (max-width: 650px) {
+    font-size: 24px !important;
+  }
+}
+
+.invest__note {
+  @include max-width(476px);
+  padding: 100px;
+  background-color: rgba(#679137, 0.91);
+  font-size: 20px;
+  margin-bottom: 0;
+  border-radius: 50%;
+  color: white;
+  padding-left: 120px;
+
+  b {
+    font-size: 36px;
+    line-height: 1.33;
+
+    @media (max-width: 650px) {
+      font-size: 20px !important;
+    }
+  }
+
+  @media (max-width: 650px) {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+  }
+}
+
+.invest__form-wrapper {
+  position: relative;
+  z-index: 2;
+}
+
+.invest__img-box {
+  position: absolute;
+  top: -584px;
+  left: 400px;
+  z-index: 2;
+
+  @media (max-width: 1150px) {
+    position: relative;
+    top: 0;
+    left: 0;
+    margin-bottom: -100px;
+    @include x-align;
+    @include max-width(444px);
+  }
+}
+
+.invest__img {
+  width: 100%;
+  height: auto;
+}
+
+.invest__form {
+  position: relative;
+  z-index: 3;
+}
+
+.invest__img-caption {
+  font-size: 40px;
+  margin-bottom: 0;
+  color: white;
+  position: absolute;
+  right: 174px;
+  top: 105px;
+
+  @media (max-width: 650px) {
+    font-size: 30px !important;
+    right: 119px;
+    top: 81px;
+  }
+}
