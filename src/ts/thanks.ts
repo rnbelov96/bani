@@ -1,5 +1,6 @@
 import '../scss/thanks.scss';
 import './year';
+import './slider';
 // import './modals';
 
 const userName = localStorage.getItem('userName');
@@ -28,3 +29,14 @@ if (userCity) {
 document.title = userName
   ? `${userName}, спасибо, Ваша заявка принята`
   : 'Cпасибо, Ваша заявка принята';
+
+const bottomDivElList = document.querySelectorAll(
+  '[data-fancybox="bottom-slider"]',
+);
+
+bottomDivElList.forEach(el => {
+  el.setAttribute(
+    'href',
+    (el.children[0] as HTMLImageElement).getAttribute('src') as string,
+  );
+});

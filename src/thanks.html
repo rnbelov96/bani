@@ -4,33 +4,286 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cпасибо, Ваша заявка принята</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/7.4.1/swiper-bundle.min.js"
+      integrity="sha512-pY1t/ADgTwbfGbw0+mRGd33EroA5YgRUWhQNFpPIAdBzyoSb38FsFrf4wBTcS3GFPdTfgtpRrbGCkdl2C2OXYA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"
+      integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css"
+      integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
   </head>
   <body class="thanks__body">
     <div class="thanks__wrapper">
       <header class="header header_thanks thanks__header">
-        <div class="container"></div>
+        <div class="container">
+          <div class="header__content">
+            <p class="header__text">
+              Франшиза по строительству каркасных бань от лидеров рынка в г.
+              Набережные Челны
+            </p>
+            <div class="header__logo-box">
+              <img
+                src="./img/icons/logo.png"
+                alt="Логотип компании"
+                class="header__logo"
+                width="142"
+                height="125"
+              />
+            </div>
+            <div class="header__contact-box">
+              <a href="tel:+79061162187" class="header__phone"
+                >+7-906-116-21-87</a
+              ><button class="header__callback js-callback">
+                Заказать звонок
+              </button>
+            </div>
+          </div>
+        </div>
       </header>
 
       <section class="thanks">
         <div class="container thanks__container">
           <div class="thanks__main">
+            <h1 class="thanks__title thanks__title_name visually-hidden">
+              <span class="thanks__user-data js-name"></span>, благодарим Вас
+              за обращение в компанию «Каркас Тайги»©
+            </h1>
+            <h1 class="thanks__title thanks__title_city visually-hidden">
+              <span class="thanks__user-data js-name"></span>, благодарим Вас за
+              заявку на город <span class="thanks__user-data js-city"></span> на
+              франшизу «Каркас Тайги»©
+            </h1>
+            <p class="thanks__subtitle">
+              Для обсуждения сотрудничества мы свяжемся с Вами в ближайшее
+              время.
+            </p>
             <div class="thanks__content">
-              <h1 class="thanks__title thanks__title_name visually-hidden">
-                <span class="thanks__user-data js-name"></span>, благодарим Вас
-                за обращение в компанию ©
-              </h1>
-              <h1 class="thanks__title thanks__title_city visually-hidden">
-                <span class="thanks__user-data js-name"></span>, благодарим Вас
-                за заявку на город
-                <span class="thanks__user-data js-city"></span> на франшизу ©
-              </h1>
+              <div class="thanks__time-box">
+                <p class="thanks__time-title">График работы компании:</p>
+                <p class="thanks__text">
+                  <b>Ежедневно (без выходных) с 09:00 до 18:00</b> по местному
+                  времени в г. Набережные Челны. Местное время совпадает с
+                  московским.
+                </p>
+                <p class="thanks__text">
+                  Если Вы оставили заявку в нерабочее время или в
+                  выходной/праздничный день, мы перезвоним Вам в ближайший
+                  рабочий день.
+                </p>
+              </div>
+              <div class="thanks__slider-wrapper">
+                <p class="thanks__slider-title">Отзывы клиентов</p>
+                <div class="thanks__slides-box">
+                  <div class="swiper thanks__slider">
+                    <div class="swiper-wrapper">
+                      <div
+                        class="swiper-slide thanks__slide"
+                        data-fancybox="bottom-slider"
+                      >
+                        <img
+                          src="./img/gallery/slider/1.jpg"
+                          alt="Фото отзыва"
+                          width="400"
+                          height="400"
+                          class="thanks__slide-img"
+                        />
+                      </div>
+                      <div
+                        class="swiper-slide thanks__slide"
+                        data-fancybox="bottom-slider"
+                      >
+                        <img
+                          src="./img/gallery/slider/2.jpg"
+                          alt="Фото отзыва"
+                          width="400"
+                          height="400"
+                          class="thanks__slide-img"
+                        />
+                      </div>
+                      <div
+                        class="swiper-slide thanks__slide"
+                        data-fancybox="bottom-slider"
+                      >
+                        <img
+                          src="./img/gallery/slider/3.jpg"
+                          alt="Фото отзыва"
+                          width="400"
+                          height="400"
+                          class="thanks__slide-img"
+                        />
+                      </div>
+                      <div
+                        class="swiper-slide thanks__slide"
+                        data-fancybox="bottom-slider"
+                      >
+                        <img
+                          src="./img/gallery/slider/4.jpg"
+                          alt="Фото отзыва"
+                          width="400"
+                          height="400"
+                          class="thanks__slide-img"
+                        />
+                      </div>
+                      <div
+                        class="swiper-slide thanks__slide"
+                        data-fancybox="bottom-slider"
+                      >
+                        <img
+                          src="./img/gallery/slider/5.jpg"
+                          alt="Фото отзыва"
+                          width="400"
+                          height="400"
+                          class="thanks__slide-img"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="thanks__slider-btn-box">
+                    <div
+                      class="swiper-button-prev thanks__slider-btn thanks__slider-btn_prev"
+                    ></div>
+                    <div
+                      class="swiper-button-next thanks__slider-btn thanks__slider-btn_next"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+              <div class="thanks__owner-box">
+                <p class="thanks__owner-title">
+                  А пока ближе <br />
+                  познакомьтесь с командой:
+                </p>
+                <p class="thanks__owner-caption">
+                  <b>Биктимеров Ленар Наилевич,</b> <br />
+                  руководитель компании
+                </p>
+                <img
+                  src="./img/owner.png"
+                  alt="Фотография руководителя"
+                  class="thanks__owner-img"
+                  width="392"
+                  height="460"
+                />
+              </div>
+            </div>
+            <div class="thanks__socials-list">
+              <div class="thanks__social-box">
+                <p class="thanks__social-title">О жизни проекта в соц.сетях:</p>
+                <div class="thanks__link-list">
+                  <a
+                    href="https://vk.com/five_baths"
+                    target="_blank"
+                    aria-label="Ссылка vk"
+                    class="thanks__link"
+                  ></a>
+                  <a
+                    href="https://youtube.com/playlist?list=PLcD07ohXC1_ds3Tpn0nOvU73yPgkmR_Eu"
+                    target="_blank"
+                    aria-label="Ссылка youtube"
+                    class="thanks__link"
+                  ></a>
+                </div>
+              </div>
+              <a
+                href="https://www.teplyy-dom.com/"
+                target="_blank"
+                aria-label="Ссылка на главный сайт"
+                class="thanks__site-link"
+                >Посетить сайт компании</a
+              >
+            </div>
+            <div class="thanks__bottom-box">
+              <p class="thanks__bottom-text">
+                Каркасные бани — лёгкость в сборке, надёжность в эксплуатации.
+              </p>
+              <a class="thanks__back-link" href="index.html">
+                <button class="button thanks__back-btn">
+                  Вернуться на главную&nbsp;страницу
+                </button>
+              </a>
             </div>
           </div>
         </div>
       </section>
 
       <footer class="footer thanks__footer">
-        <div class="container"></div>
+        <div class="container">
+          <div class="footer__content">
+            <div class="footer__left-side">
+              <p class="footer__copyright">
+                © «Каркас Тайги», 2020-<span class="js-year"></span> г.
+              </p>
+              <p class="footer__data">
+                ИП Биктимеров Л.П. <br />
+                ОГРНИП 318169000004421
+              </p>
+              <p class="footer__address">
+                Россия, Республика Татарстан, <br />
+                г.Набережные Челны
+              </p>
+              <button class="footer__policy js-policy">
+                Политика конфиденциальности
+              </button>
+            </div>
+            <div class="footer__center-side">
+              <img
+                src="./img/icons/logo.png"
+                alt="Логотип компании"
+                width="100"
+                height="87"
+                class="footer__logo"
+              />
+              <div class="footer__social-list">
+                <a
+                  href="https://vk.com/five_baths"
+                  target="_blank"
+                  aria-label="Ссылка vk"
+                  class="footer__link"
+                ></a
+                ><a
+                  href="https://youtube.com/playlist?list=PLcD07ohXC1_ds3Tpn0nOvU73yPgkmR_Eu"
+                  target="_blank"
+                  aria-label="Ссылка youtube"
+                  class="footer__link"
+                ></a>
+              </div>
+            </div>
+            <div class="footer__right-side">
+              <div class="header__contact-box">
+                <a href="tel:+79061162187" class="header__phone"
+                  >+7-906-116-21-87</a
+                ><button class="header__callback js-callback">
+                  Заказать звонок
+                </button>
+              </div>
+              <a
+                href="https://xn--5-7sbamtgf4aex7b0b.xn--p1ai/"
+                target="_blank"
+                aria-label="Ссылка франчайзинг5"
+                class="footer__f5"
+                >Упаковка и продвижение <br />
+                франшиз: «Франчайзинг5»</a
+              >
+            </div>
+          </div>
+        </div>
       </footer>
     </div>
 
