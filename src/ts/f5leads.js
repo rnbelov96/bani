@@ -63,14 +63,6 @@ const validateForm = form => {
   return false;
 };
 
-function objectifyForm(formArray) {
-  const returnArray = {};
-  for (let i = 0; i < formArray.length; i++) {
-    [, returnArray[formArray[i][0]]] = formArray[i];
-  }
-  return returnArray;
-}
-
 function parseQueryString(query) {
   const vars = query.split('&');
   const queryString = {};
@@ -93,110 +85,217 @@ function parseQueryString(query) {
   return queryString;
 }
 
-const query = window.location.search.substring(1);
-const qs = parseQueryString(query);
-
-function getCookie(cname) {
-  const name = `${cname}=`;
-  const decodedCookie = decodeURIComponent(document.cookie);
-  const ca = decodedCookie.split(';');
-  for (let i = 0; i < ca.length; i++) {
-    let c = ca[i];
-    while (c.charAt(0) === ' ') {
-      c = c.substring(1);
+function serializeArray(form) {
+  const arr = [];
+  Array.prototype.slice.call(form.elements).forEach(field => {
+    if (
+      !field.name
+      || field.disabled
+      || ['file', 'reset', 'submit', 'button'].indexOf(field.type) > -1
+    ) {
+      return;
     }
-    if (c.indexOf(name) === 0) {
-      return c.substring(name.length, c.length);
+    if (field.type === 'select-multiple') {
+      Array.prototype.slice.call(field.options).forEach(option => {
+        if (!option.selected) return;
+        arr.push({
+          name: field.name,
+          value: option.value,
+        });
+      });
+      return;
     }
-  }
-  return '';
+    if (['checkbox', 'radio'].indexOf(field.type) > -1 && !field.checked) {
+      return;
+    }
+    arr.push({
+      name: field.name,
+      value: field.value,
+    });
+  });
+  return arr;
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  document.formData = {};
-  document.formData.ganalytics = '';
-  document.formData.roistat = '';
-  document.formData.formname = 'form';
-  document.formData.domain = window.location.host;
-  document.formData.send_to_bitrix = document.f5leads.send_to_bitrix;
-  document.formData.expect_second_form = document.f5leads.expect_second_form;
-  document.formData.emails = document.f5leads.emails;
-  if (document.formData.domain.length === 0) {
-    document.formData.domain = window.location.hostname;
+const query = window.location.search.substring(1);
+const qs = parseQueryString(query);
+const { localStorage } = window;
+if (qs.utm_source) localStorage.utm_source = qs.utm_source;
+if (qs.utm_source) localStorage.utm_source = qs.utm_source;
+if (qs.utm_medium) localStorage.utm_medium = qs.utm_medium;
+if (qs.utm_campaign) localStorage.utm_campaign = qs.utm_campaign;
+if (qs.utm_campaign_name) localStorage.utm_campaign_name = qs.utm_campaign_name;
+if (qs.utm_source) localStorage.utm_term = qs.utm_term;
+if (qs.utm_placement) localStorage.utm_placement = qs.utm_placement;
+if (qs.utm_device) localStorage.utm_device = qs.utm_device;
+if (qs.utm_region_name) localStorage.utm_region_name = qs.utm_region_name;
+if (qs.yclid) localStorage.yclid = qs.yclid;
+
+function getStoredItem(item) {
+  if (
+    !localStorage.getItem(`lpg3746_${item}`)
+    && localStorage.getItem(`lpg3746_${item}`) != 'false'
+  ) { return false; }
+  return localStorage.getItem(`lpg3746_${item}`);
+}
+function setStoredItem(item, value) {
+  if (value == null || value == '' || value == undefined) return false;
+  return localStorage.setItem(`lpg3746_${item}`, value);
+}
+function getField(name, array) {
+  for (let i = array.length - 1; i >= 0; i--) {
+    if (array[i].name == name) {
+      return array[i].value;
+    }
   }
-  document.formData.utm_source = localStorage.utm_source || qs.utm_source || '';
-  localStorage.utm_source = document.formData.utm_source;
-  document.formData.utm_medium = localStorage.utm_medium || qs.utm_medium || '';
-  localStorage.utm_medium = document.formData.utm_medium;
-  document.formData.utm_campaign = localStorage.utm_campaign || qs.utm_campaign || '';
-  localStorage.utm_campaign = document.formData.utm_campaign;
-  document.formData.utm_term = localStorage.utm_term || qs.utm_term || '';
-  localStorage.utm_term = document.formData.utm_term;
-  document.formData.utm_content = localStorage.utm_content || qs.utm_content || '';
-  localStorage.utm_content = document.formData.utm_content;
-  document.formData.utm_placement = localStorage.utm_placement || qs.utm_placement || '';
-  localStorage.utm_placement = document.formData.utm_placement;
+  return false;
+}
 
-  ymaps.ready(() => {
-    document.formData.city = ymaps.geolocation.city || '';
-  });
+const formsList = document.querySelectorAll('form');
 
-  const x = new Date();
-  document.formData.timezone = (-1 * x.getTimezoneOffset()) / 60;
-
-  const formsList = document.querySelectorAll('form');
+document.addEventListener('DOMContentLoaded', () => {
+  if (typeof ymaps !== 'undefined') {
+    ymaps.ready(() => {
+      ymaps.geolocation
+        .get({ provider: 'yandex', autoReverseGeocode: true })
+        .then(result => {
+          document.usercity = result.geoObjects.get(0).properties.get('metaDataProperty')
+            .GeocoderMetaData.Address.formatted || '';
+          setStoredItem('city', document.usercity);
+        });
+    });
+  }
 
   formsList.forEach(form => {
-    form.addEventListener('submit', async e => {
+    form.addEventListener('submit', e => {
       e.preventDefault();
       if (!validateForm(form)) {
         return;
       }
 
-      document.formData.roistat = getCookie('roistat_visit') || '';
+      const data = serializeArray(form);
+      const formData = new FormData();
 
-      document.formData = {
-        ...document.formData,
-        ...objectifyForm([...new FormData(form).entries()]),
-      };
+      setStoredItem('name', getField('name', data));
+      if (getField('city', data)) setStoredItem('city', getField('city', data));
 
-      if (document.formData.name === undefined) {
-        document.formData.name = window.location.hostname;
+      if (
+        !getField('name', data)
+        && getStoredItem('name') != 'false'
+        && getStoredItem('name')
+      ) {
+        data.push({ name: 'name', value: getStoredItem('name') });
       }
-
-      // fetch(
-      //   `welcomemail.php?name=${document.formData.name}&email=${document.formData.email}`,
-      // ).then(data => data.text().then(text => console.log(text)));
-
-      const data = JSON.stringify(document.formData);
-
-      const response = await fetch('https://f5leads.franch5.ru/add_lead', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Cache-Control': 'no-cache',
-        },
-        body: data,
-      });
-
-      if (!response.ok) {
-        window.location = 'error.html';
-        return;
+      let cityInserted = false;
+      if (
+        !getField('city', data)
+        && getStoredItem('city') != 'false'
+        && getStoredItem('city')
+      ) {
+        cityInserted = true;
+        data.push({ name: 'city', value: getStoredItem('city') });
       }
 
       if (
-        document.f5leads.expect_second_form === '1'
-        && form.classList.contains('secondform')
+        localStorage.utm_source !== undefined
+        && localStorage.utm_source !== ''
       ) {
-        if (document.f5leads.onSubmitSecondForm !== undefined) {
-          document.f5leads.onSubmitSecondForm(form);
-        }
-      } else {
-        localStorage.lastFirstFormData = JSON.stringify(document.formData);
-        if (document.f5leads.onSubmitFirstForm !== undefined) {
-          document.f5leads.onSubmitFirstForm(form);
-        }
+        data.push({ name: 'utm_source', value: localStorage.utm_source });
       }
+
+      if (
+        localStorage.utm_medium !== undefined
+        && localStorage.utm_medium !== ''
+      ) {
+        data.push({ name: 'utm_medium', value: localStorage.utm_medium });
+      }
+
+      if (
+        localStorage.utm_campaign !== undefined
+        && localStorage.utm_campaign !== ''
+      ) {
+        data.push({ name: 'utm_campaign', value: localStorage.utm_campaign });
+      }
+
+      if (
+        localStorage.utm_campaign_name !== undefined
+        && localStorage.utm_campaign_name !== ''
+      ) {
+        data.push({
+          name: 'utm_campaign_name',
+          value: localStorage.utm_campaign_name,
+        });
+      }
+
+      if (localStorage.utm_term !== undefined && localStorage.utm_term !== '') {
+        data.push({ name: 'utm_term', value: localStorage.utm_term });
+      }
+
+      if (
+        localStorage.utm_content !== undefined
+        && localStorage.utm_content !== ''
+      ) {
+        data.push({ name: 'utm_content', value: localStorage.utm_content });
+      }
+
+      if (
+        localStorage.utm_placement !== undefined
+        && localStorage.utm_placement !== ''
+      ) {
+        data.push({ name: 'utm_placement', value: localStorage.utm_placement });
+      }
+
+      if (
+        localStorage.utm_device !== undefined
+        && localStorage.utm_device !== ''
+      ) {
+        data.push({ name: 'utm_device', value: localStorage.utm_device });
+      }
+
+      if (
+        localStorage.utm_region_name !== undefined
+        && localStorage.utm_region_name !== ''
+      ) {
+        data.push({
+          name: 'utm_region_name',
+          value: localStorage.utm_region_name,
+        });
+      }
+
+      if (localStorage.yclid !== undefined && localStorage.yclid !== '') {
+        data.push({ name: 'yclid', value: localStorage.yclid });
+      }
+
+      if (
+        !cityInserted
+        && ymaps.geolocation.city !== undefined
+        && ymaps.geolocation.city !== ''
+      ) {
+        data.push({ name: 'city', value: ymaps.geolocation.city });
+      }
+
+      const x = new Date();
+      data.push({ name: 'timezone', value: (-1 * x.getTimezoneOffset()) / 60 });
+
+      for (let i = data.length - 1; i >= 0; i--) {
+        formData.append(data[i].name, data[i].value);
+      }
+
+      fetch('php/formProcessor.php', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+        },
+      })
+        .then(res => res.text())
+        .then(res => {
+          if (res == 1) {
+            window.location.href = 'thanks.html';
+          } else if (res == 2) {
+            alert('Something was wrong. Please, contact administrator.');
+          }
+        })
+        .catch(err => console.log(err));
     });
   });
 });

@@ -2,23 +2,22 @@
 export {};
 
 const animationNameList = ['zoomIn', 'fadeIn', 'backInDown'];
-const animationNumber = 0;
+const animationNumber = 2;
 
 const openedModalList: Element[] = [];
 
 const modalFormInfoList = [
   {
-    title: 'Оставьте заявку на бесплатную консультацию',
-    button: 'Получить консультацию',
+    title: 'Получите ответы на вопросы у эксперта',
+    button: 'Заказать звонок',
   },
   {
-    title: 'Получите презентацию франшизы и финансовую модель',
-    button: 'Получить презентацию',
+    title: 'Оставьте заявку и получите бизнес-план и презентацию франшизы',
+    button: 'Получить',
   },
   {
-    title: `Уже уходите? <br> 
-      Получите бесплатную презентацию на почту.`,
-    button: 'Получить презентацию',
+    title: 'Подождите, проект действительно может вас заинтересовать. Примите решение после общения с экспертом',
+    button: 'Заказать консультацию',
   },
 ];
 
@@ -53,6 +52,8 @@ let isYoutubeModalOpened = false;
 
 const formTitleEl = formModalEl.querySelector('.js-modal-form-title') as HTMLSpanElement;
 const formBtnEl = formModalEl.querySelector('.js-modal-form-btn') as HTMLButtonElement;
+const formBtnHidden = formModalEl.querySelector('.js-modal-btn-hidden') as HTMLInputElement;
+const formTitleHidden = formModalEl.querySelector('.js-modal-title-hidden') as HTMLInputElement;
 
 const modalWrapperElList = document.querySelectorAll('.modal__center-wrapper');
 modalElList.forEach(modalEl => {
@@ -95,6 +96,8 @@ callbackBtnElList.forEach(btn => {
     openedModalList.unshift(formModalEl);
     formTitleEl.textContent = modalFormInfoList[0].title;
     formBtnEl.textContent = modalFormInfoList[0].button;
+    formBtnHidden.value = modalFormInfoList[0].title;
+    formTitleHidden.value = modalFormInfoList[0].button;
     openModal(formModalEl as HTMLDivElement);
   });
 });
@@ -105,6 +108,8 @@ presentBtnElList.forEach(btn => {
     openedModalList.unshift(formModalEl);
     formTitleEl.textContent = modalFormInfoList[1].title;
     formBtnEl.textContent = modalFormInfoList[1].button;
+    formBtnHidden.value = modalFormInfoList[1].title;
+    formTitleHidden.value = modalFormInfoList[1].button;
     openModal(formModalEl as HTMLDivElement);
   });
 });
@@ -113,11 +118,15 @@ let isLeaveModalOpened = false;
 
 document.addEventListener('mouseleave', e => {
   if (e.clientY < 10 && !isLeaveModalOpened) {
-    isLeaveModalOpened = true;
-    openedModalList.unshift(formModalEl);
-    formTitleEl.innerHTML = modalFormInfoList[2].title;
-    formBtnEl.textContent = modalFormInfoList[2].button;
-    openModal(formModalEl as HTMLDivElement);
+    if (formTitleEl && formBtnEl && formBtnHidden && formTitleHidden) {
+      isLeaveModalOpened = true;
+      openedModalList.unshift(formModalEl);
+      formTitleEl.innerHTML = modalFormInfoList[2].title;
+      formBtnEl.textContent = modalFormInfoList[2].button;
+      formBtnHidden.value = modalFormInfoList[2].button;
+      formTitleHidden.value = modalFormInfoList[2].title;
+      openModal(formModalEl as HTMLDivElement);
+    }
   }
 });
 

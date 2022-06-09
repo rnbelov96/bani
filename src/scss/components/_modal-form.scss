@@ -1,0 +1,125 @@
+.modal-form {
+  background: white;
+  box-shadow: 0px 5px 106px 0 rgba(0, 0, 0, 0.75);
+  border-radius: 10px;
+  position: relative;
+  padding-top: 51px;
+  padding-bottom: 170px;
+  padding-left: 57px;
+  padding-right: 47px;
+  color: black;
+  width: 98%;
+  max-width: 404px;
+  @include bg;
+  background-image: url('/src/img/bgs/modal-form-bg.jpg');
+
+  @media (max-width: 650px) {
+    padding: 20px;
+    padding-bottom: 180px;
+    max-width: 310px;
+  }
+}
+
+.modal-form__title {
+  text-align: left;
+  font-size: 22px;
+  margin-bottom: 27px;
+
+  @media (max-width: 650px) {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+}
+
+.modal-form__content {
+  display: flex;
+  gap: 24px;
+  flex-direction: column;
+  margin-bottom: 24px;
+
+  @media (max-width: 650px) {
+    margin-bottom: 15px;
+    gap: 20px;
+  }
+}
+
+.modal-form__input-container {
+  width: 100%;
+  display: flex;
+  gap: 14px;
+  flex-direction: column;
+}
+
+.modal-form__input-box {
+  @include max-width(281px);
+  background-color: #edf2f8;
+  min-height: 54px;
+  padding-left: 35px;
+  padding-right: 10px;
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  &::before {
+    @include bg;
+    width: 15px;
+    height: 15px;
+    background-size: contain;
+    position: absolute;
+    left: 15px;
+    @include y-align;
+    content: '';
+  }
+
+  @for $i from 1 through 3 {
+    &:nth-child(#{$i})::before {
+      background-image: url('/src/img/icons/form/#{$i}.png');
+    }
+  }
+
+  // &_city::before {
+  //   background-image: url('/src/img/icons/form/4.svg') !important;
+  // }
+}
+
+.modal-form__input {
+  font-size: 14px;
+  border: none;
+  background-color: transparent;
+  color: black;
+  width: 100%;
+
+  &::-webkit-input-placeholder {
+    color: #999999;
+  }
+
+  &::-moz-placeholder {
+    color: #999999;
+  }
+
+  &:-ms-input-placeholder {
+    color: #999999;
+  }
+
+  &:-moz-placeholder {
+    color: #999999;
+  }
+}
+
+.modal-form__policy {
+  position: relative;
+  color: #999999;
+  font-size: 10px;
+  text-align: left;
+  margin-bottom: 0;
+
+  @media (max-width: 650px) {
+    font-size: 10px !important;
+  }
+
+  span {
+    cursor: pointer;
+    color: #729d39;
+    text-decoration: underline;
+  }
+}

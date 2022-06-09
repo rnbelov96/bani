@@ -81,6 +81,7 @@
   margin-bottom: 0;
   font-size: 20px;
   position: relative;
+  z-index: -1;
 
   @media (max-width: 850px) {
     max-width: 100%;

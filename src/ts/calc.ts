@@ -26,11 +26,14 @@ const resultLabelElList = document.querySelectorAll('.js-calc-result');
 
 let result: number;
 
-let firmCurrentStep = 4;
-let terrCurrentStep = 4;
+let firmCurrentStep = 2;
+let terrCurrentStep = 3;
 
 const calcResult = () => {
-  result = Number(firmRange.value) * 4500 + Number(terrRange.value) * 10500;
+  result = Math.round(
+    (Number(firmRange.value) * 236875 + Number(terrRange.value) * 320000) *
+      0.157,
+  );
   resultLabelElList.forEach(resultLabelEl => {
     resultLabelEl.textContent = result.toLocaleString();
   });
@@ -42,9 +45,11 @@ calcResult();
 rangeElList.forEach(el => {
   const rangeEl = el as HTMLInputElement;
 
-  const steps = (Number(rangeEl.max) - Number(rangeEl.min)) / Number(rangeEl.step);
+  const steps =
+    (Number(rangeEl.max) - Number(rangeEl.min)) / Number(rangeEl.step);
 
-  const currentStep = (Number(rangeEl.value) - Number(rangeEl.min)) / Number(rangeEl.step);
+  const currentStep =
+    (Number(rangeEl.value) - Number(rangeEl.min)) / Number(rangeEl.step);
 
   rangeEl.style.background = `linear-gradient(to right, ${leftColor} 0%, ${leftColor} ${String(
     (currentStep / steps) * 100,
@@ -52,24 +57,26 @@ rangeElList.forEach(el => {
     (currentStep / steps) * 100,
   )}%, ${rightColor} 100%)`;
 
-  firmEndpointsEl.style.left = `${firmCurrentStep * 14.3}%`;
-  firmEndpointsEl.style.transform = `translateX(-${firmCurrentStep * 14.3}%)`;
+  firmEndpointsEl.style.left = `${firmCurrentStep * 33.3}%`;
+  firmEndpointsEl.style.transform = `translateX(-${firmCurrentStep * 33.3}%)`;
   firmEndpointEl.textContent = String(firmCurrentStep + 1);
 
-  terrEndpointsEl.style.left = `${terrCurrentStep * 14.3}%`;
-  terrEndpointsEl.style.transform = `translateX(-${terrCurrentStep * 14.3}%)`;
+  terrEndpointsEl.style.left = `${terrCurrentStep * 20}%`;
+  terrEndpointsEl.style.transform = `translateX(-${terrCurrentStep * 20}%)`;
   terrEndpointEl.textContent = String(terrCurrentStep + 1);
 });
 
 firmRange.addEventListener('input', e => {
   const rangeEl = e.currentTarget as HTMLInputElement;
 
-  const steps = (Number(rangeEl.max) - Number(rangeEl.min)) / Number(rangeEl.step);
+  const steps =
+    (Number(rangeEl.max) - Number(rangeEl.min)) / Number(rangeEl.step);
 
-  firmCurrentStep = (Number(rangeEl.value) - Number(rangeEl.min)) / Number(rangeEl.step);
+  firmCurrentStep =
+    (Number(rangeEl.value) - Number(rangeEl.min)) / Number(rangeEl.step);
 
-  firmEndpointsEl.style.left = `${firmCurrentStep * 14.3}%`;
-  firmEndpointsEl.style.transform = `translateX(-${firmCurrentStep * 14.3}%)`;
+  firmEndpointsEl.style.left = `${firmCurrentStep * 33.3}%`;
+  firmEndpointsEl.style.transform = `translateX(-${firmCurrentStep * 33.3}%)`;
   firmEndpointEl.textContent = String(firmCurrentStep + 1);
 
   rangeEl.style.background = `linear-gradient(to right, ${leftColor} 0%, ${leftColor} ${String(
@@ -84,12 +91,14 @@ firmRange.addEventListener('input', e => {
 terrRange.addEventListener('input', e => {
   const rangeEl = e.currentTarget as HTMLInputElement;
 
-  const steps = (Number(rangeEl.max) - Number(rangeEl.min)) / Number(rangeEl.step);
+  const steps =
+    (Number(rangeEl.max) - Number(rangeEl.min)) / Number(rangeEl.step);
 
-  terrCurrentStep = (Number(rangeEl.value) - Number(rangeEl.min)) / Number(rangeEl.step);
+  terrCurrentStep =
+    (Number(rangeEl.value) - Number(rangeEl.min)) / Number(rangeEl.step);
 
-  terrEndpointsEl.style.left = `${terrCurrentStep * 14.3}%`;
-  terrEndpointsEl.style.transform = `translateX(-${terrCurrentStep * 14.3}%)`;
+  terrEndpointsEl.style.left = `${terrCurrentStep * 20}%`;
+  terrEndpointsEl.style.transform = `translateX(-${terrCurrentStep * 20}%)`;
   terrEndpointEl.textContent = String(terrCurrentStep + 1);
 
   rangeEl.style.background = `linear-gradient(to right, ${leftColor} 0%, ${leftColor} ${String(

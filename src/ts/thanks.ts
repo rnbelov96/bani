@@ -1,7 +1,7 @@
 import '../scss/thanks.scss';
 import './year';
 import './slider';
-// import './modals';
+import './modals';
 
 const userName = localStorage.getItem('userName');
 const userCity = localStorage.getItem('userCity');

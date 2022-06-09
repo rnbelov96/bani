@@ -4,6 +4,10 @@
   @include bg;
   background-image: url('/src/img/bgs/grow-bg.jpg');
 
+  @media (min-width: 1921px) {
+    background-size: initial;
+  }
+
   @media (max-width: 1150px) {
     padding-top: 50px;
     padding-bottom: 50px;

@@ -151,6 +151,7 @@
 .stats__bottom-list-wrapper {
   position: relative;
   margin-bottom: 50px;
+  z-index: -1;
 
   @media (max-width: 650px) {
     margin-bottom: 20px;
