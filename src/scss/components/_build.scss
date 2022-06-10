@@ -81,7 +81,7 @@
     left: -390px;
     top: -35px;
     @include bg;
-    background-image: url('/src/img/build-table.png');
+    background-image: url('/src/img/build-table.webp');
     @media (max-width: 1150px) {
       @include max-width(891px);
       position: relative;
